@@ -14,10 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: joaojoaofernandes/academy/.github/actions/docker_build@main
-    - name: list Docker images
-      with:
-        path_dockerfile: '../Dockerfile'
-        image_name: 'academy'
-        tag_name: 'latest'
+    - name: Build Docker image
+      run: |
+        docker build ../ -f ../Dockerfile -t academy:latest
 
