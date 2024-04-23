@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: joaojoaofernandes/academy/.github/actions/docker_build/action.yml
+    - uses: joaojoaofernandes/academy/.github/actions/docker_build/action.yml@main
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag academy:$(date +%s)
     - name: list Docker images
