@@ -26,7 +26,7 @@ runs:
         else
           echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
         fi
-
+    shell: bash
     - run: |
         NAME=${{ inputs.image_name }}:$TAG
         echo "DOCKER_IMAGE_NAME=$NAME" >> $GITHUB_ENV 
