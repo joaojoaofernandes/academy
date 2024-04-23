@@ -29,4 +29,4 @@ runs:
         fi
         echo "DOCKER_IMAGE_NAME=$NAME" >> $GITHUB_ENV 
         docker build . --file ${{imputs.path_dockerfile}} --tag academy:$(date +%s)
-    - shell: bash
+      shell: bash
