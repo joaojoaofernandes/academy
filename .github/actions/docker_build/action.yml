@@ -24,4 +24,5 @@ runs:
         else
           echo "TAG=${{ inputs.{{input-name}} }}" >> $GITHUB_ENV
         fi
+        echo "DOCKER_IMAGE_NAME=$NAME" >> $GITHUB_ENV 
         docker build . --file Dockerfile --tag academy:$(date +%s)
