@@ -7,13 +7,14 @@ inputs:
       default: 'World'
     path_dockerfile:
       description: 'Path to the Dockerfile'
-      required: true
+      required: false
+      default: 'Dockerfile'
     image_name:
       description: 'image_name'
       required: true
     tag_name:
       description: 'Tag name'
-      required: true
+      required: false
 
 runs:
   using: composite
