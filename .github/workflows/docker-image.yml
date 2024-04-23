@@ -19,6 +19,6 @@ jobs:
       with:
         tag_name: 'doc'
         image_name: 'docke'
-        path_dockerfile: 'C:\Users\CTW03591\Desktop\academy\Dockerfile'
+        path_dockerfile: '.\Dockerfile'
     - uses: joaojoaofernandes/academy/.github/actions/docker_build@main
 
