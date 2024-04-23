@@ -18,6 +18,5 @@ jobs:
     - name: list Docker images
       with:
         tag_name: 'latest'
-        image_name: 'academy'
       
 
