@@ -11,10 +11,11 @@ inputs:
       default: 'Dockerfile'
     image_name:
       description: 'image_name'
-      required: true
+      required: false
+      default: 'academy'
     tag_name:
       description: 'Tag name'
-      required: false
+      required: true
 
 runs:
   using: composite
@@ -27,5 +28,5 @@ runs:
           echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
         fi
         echo "DOCKER_IMAGE_NAME=$NAME" >> $GITHUB_ENV 
-        docker build . --file $NAME --tag academy:$TAG
+        docker build . --file ${{imputs.path_dockerfile}} --tag academy:$(date +%s)
     - shell: bash

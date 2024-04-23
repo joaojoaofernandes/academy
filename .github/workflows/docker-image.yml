@@ -17,8 +17,6 @@ jobs:
     - uses: joaojoaofernandes/academy/.github/actions/docker_build@main
     - name: list Docker images
       with:
-        path_dockerfile: '../Dockerfile'
-        image_name: 'academy'
         tag_name: 'latest'
       
 
