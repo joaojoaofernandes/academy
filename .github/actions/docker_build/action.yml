@@ -1,33 +1,29 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'docker build'
+description: 'Who to greet'
 inputs:
-    Hello:
-      description: 'Who to greet'
-      required: false
-      default: 'World'
-    path_dockerfile:
-      description: 'Path to the Dockerfile'
-      required: false
-      default: 'Dockerfile'
-    image_name:
-      description: 'image_name'
-      required: true
-    tag_name:
-      description: 'Tag name'
-      required: true
-
+  path_dockerfile:
+    description: 'Dockerfile (optional)'
+    required: false
+    default: 'Dockerfile'
+  image_name:
+    description: 'Name of the Docker image'
+    required: true
+  input_tag:
+    description: 'Tag for the Docker image (optional)'
+    required: false
 runs:
   using: composite
   steps:
-    - run: |
-        if [ -z "${{ inputs.tag_name }}" ]; then
-          echo "TAG=$(date +%s)" >> $GITHUB_ENV
+    - name: Check for input tag
+      run: |
+        if [ -z "${{ inputs.input_tag }}" ]; then
+            echo "TAG=$(date +%s)" >> $GITHUB_ENV
         else
-          echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
+            echo "TAG=${{ inputs.input_tag }}" >> $GITHUB_ENV
         fi
-    shell: bash
-    - run: |
-        NAME=${{ inputs.image_name }}:$TAG
-        echo "DOCKER_IMAGE_NAME=$NAME" >> $GITHUB_ENV 
-        docker build . --file ${{ imputs.path_dockerfile }} --tag $NAME
-    shell: bash
+      shell: bash
+    - run: |  
+        NAME=${{inputs.image_name}}:$TAG
+        echo "DOCKER_IMAGE_NAME=$NAME" >> $GITHUB_ENV
+        docker build . --file "${{ inputs.path_dockerfile }}" --tag $NAME
+      shell: bash
