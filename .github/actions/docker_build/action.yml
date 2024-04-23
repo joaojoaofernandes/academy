@@ -11,8 +11,7 @@ inputs:
       default: 'Dockerfile'
     image_name:
       description: 'image_name'
-      required: false
-      default: 'academy'
+      required: true
     tag_name:
       description: 'Tag name'
       required: true
