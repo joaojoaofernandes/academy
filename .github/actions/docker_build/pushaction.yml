@@ -1,0 +1,22 @@
+name: 'docker build'
+description: 'Who to greet'
+inputs:
+ docker_image:
+    description: 'Dockerfile (optional)'
+    required: true
+  docker_name:
+    description: 'Name of the Docker image'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Login to Docker Hub
+      run: docker login -u ${{ inputs.docker_username }} -p ${{ secrets.DOCKER_PASSWORD }}
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Tag Docker image
+      run: docker tag ${{ inputs.image_name }} ${{ inputs.docker_username }}/${{ inputs.image_name }}
+
+    - name: Push Docker image
+      run: docker push ${{ inputs.docker_username }}/${{ inputs.image_name }}
