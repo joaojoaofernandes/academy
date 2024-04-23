@@ -20,13 +20,12 @@ runs:
   using: composite
   steps:
     - run: |
-        $TAG=$(date +%s)
         if [ -z "${{ inputs.tag_name }}" ]; then
         TAG=
-          echo "TAG=$TAG" >> $GITHUB_ENV
+          echo "TAG=$(date +%s)" >> $GITHUB_ENV
         else
           echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
         fi
-        echo "DOCKER_IMAGE_NAME=${{ inputs.image_name }}" >> $GITHUB_ENV 
-        docker build . --file ${{ inputs.path_dockerfile }} --tag $TAG
+        echo "DOCKER_IMAGE_NAME=$NAME" >> $GITHUB_ENV 
+        docker build . --file $NAME --tag academy:$TAG
     - shell: bash
