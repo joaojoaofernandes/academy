@@ -19,12 +19,12 @@ inputs:
 runs:
   using: composite
   steps:
-    shell: bash
-    - run: |
+    - shell: bash
+      run: |
         if [ -z "${{ inputs.tag_name }}" ]; then
-          echo "TAG=$${{ inputs.tag_name }}" >> $GITHUB_ENV
+          echo "TAG=$GITHUB_SHA" >> $GITHUB_ENV
         else
           echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
         fi
         echo "DOCKER_IMAGE_NAME=${{ inputs.image_name }}" >> $GITHUB_ENV 
-        docker build . --file ${{ inputs.path_dockerfile }} --tag TAG
+        docker build . --file "${{ inputs.path_dockerfile }}" --tag "${{ inputs.image_name }}:${{ env.TAG }}"
