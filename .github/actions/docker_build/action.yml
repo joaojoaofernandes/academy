@@ -3,11 +3,25 @@ description: 'Greet someone and record the time'
 inputs:
     Hello:
       description: 'Who to greet'
-      required: true
+      required: false
       default: 'World'
+    path_dockerfile:
+      description: 'Path to the Dockerfile'
+      required: true
+    image_name:
+      description: 'image_name'
+      required: true
+    tag_name:
+      description: 'Tag name'
+      required: true
+
 runs:
   using: composite
   steps:
     - run: |
-        echo "Hello World"
-      shell: bash
+        if [ -z "${{ inputs.{{input-name}} }}" ]; then
+          echo "TAG=$(date +%s)" >> $GITHUB_ENV
+        else
+          echo "TAG=${{ inputs.{{input-name}} }}" >> $GITHUB_ENV
+        fi
+        docker build . --file Dockerfile --tag academy:$(date +%s)
