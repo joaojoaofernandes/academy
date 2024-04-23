@@ -8,7 +8,7 @@ inputs:
     path_dockerfile:
       description: 'Path to the Dockerfile'
       required: false
-      default: '../../Dockerfile'
+      default: '../../../Dockerfile'
     image_name:
       description: 'image_name'
       required: false
