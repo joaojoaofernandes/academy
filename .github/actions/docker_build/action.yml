@@ -21,7 +21,8 @@ runs:
   steps:
     - run: |
         if [ -z "${{ inputs.tag_name }}" ]; then
-          echo "TAG=$${{ inputs.tag_name }}" >> $GITHUB_ENV
+        TAG=
+          echo "TAG=$(date +%s)" >> $GITHUB_ENV
         else
           echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
         fi
