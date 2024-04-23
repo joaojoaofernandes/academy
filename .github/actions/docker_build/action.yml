@@ -12,7 +12,7 @@ inputs:
     image_name:
       description: 'image_name'
       required: false
-      default: 'academy'
+      default: 'ima'
     tag_name:
       description: 'Tag name'
       required: true
