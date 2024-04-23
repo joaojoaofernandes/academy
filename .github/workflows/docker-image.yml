@@ -14,8 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: joaojoaofernandes/academy/.github/actions/docker_build@main
     - name: list Docker images
+      uses: joaojoaofernandes/academy/.github/actions/docker_build@main
       with:
         tag_name: 'latest'
       
